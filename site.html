@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Скачать Criminal RP — CRMP Mobile</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
+    html { scroll-behavior: smooth; }
+    body { background-color: #0a0a0a; color: #ffffff; line-height: 1.5; }
+
+    /* Шапка */
+    header {
+      position: fixed; top: 0; width: 100%;
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #222;
+      padding: 12px 15px;
+      display: flex; justify-content: space-between; align-items: center;
+      z-index: 100;
+    }
+
+    /* Блок логотипа */
+    .logo-container {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; color: white;
+    }
+    .site-logo { height: 36px; width: auto; object-fit: contain; border-radius: 6px; }
+    .logo-text { font-weight: 900; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; white-space: nowrap; }
+    .logo-text span { color: #ff3b30; }
+
+    /* Кнопки в шапке */
+    .nav-buttons { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    .nav-btn {
+      background: #1a1a1a; color: #fff; border: 1px solid #333;
+      padding: 8px 12px; border-radius: 8px; font-weight: 700; font-size: 0.8rem;
+      text-decoration: none; display: inline-block; transition: 0.2s;
+      cursor: pointer; white-space: nowrap;
+    }
+    .nav-btn:hover, .nav-btn:active { background: #2a2a2a; border-color: #ff3b30; }
+
+    /* Выпадающее меню Соц. Сетей */
+    .dropdown { position: relative; display: inline-block; }
+    .dropdown-btn {
+      background: #ff3b30; color: white; border: none;
+      padding: 8px 14px; border-radius: 8px; font-weight: 800; font-size: 0.8rem;
+      cursor: pointer; transition: 0.2s; white-space: nowrap;
+    }
+    .dropdown-btn:hover { background: #e03126; }
+    
+    .dropdown-menu {
+      display: none; position: absolute; right: 0; top: 120%;
+      background: #141414; border: 1px solid #333; border-radius: 10px;
+      width: 150px; box-shadow: 0 10px 25px rgba(0,0,0,0.7); overflow: hidden;
+      z-index: 200;
+    }
+    .dropdown-menu.active { display: block; }
+    .dropdown-menu a {
+      display: block; padding: 10px 15px; color: #ccc;
+      text-decoration: none; font-size: 0.85rem; font-weight: 600; border-bottom: 1px solid #222;
+    }
+    .dropdown-menu a:last-child { border-bottom: none; }
+    .dropdown-menu a:hover { background: #ff3b30; color: white; }
+
+    /* Главный экран */
+    .hero {
+      position: relative;
+      min-height: 80vh; 
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center; text-align: center;
+      padding: 120px 20px 0px;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-image: url('https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=1920'); 
+      background-size: cover; background-position: center;
+      z-index: 1; opacity: 0.3;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(to bottom, rgba(10,10,10,0.2) 0%, rgba(10,10,10,1) 95%);
+      z-index: 2;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      display: flex; flex-direction: column; align-items: center;
+    }
+
+    .badge {
+      background: rgba(255, 59, 48, 0.15); color: #ff3b30;
+      border: 1px solid rgba(255, 59, 48, 0.3);
+      padding: 6px 16px; border-radius: 20px;
+      font-size: 0.75rem; font-weight: 800; letter-spacing: 1px; margin-bottom: 20px;
+    }
+    h1 { font-size: 3rem; font-weight: 900; text-transform: uppercase; margin-bottom: 15px; text-shadow: 0 5px 15px rgba(0,0,0,0.8); }
+    h1 span { color: #ff3b30; }
+    .hero p { color: #ddd; max-width: 500px; font-size: 1rem; margin-bottom: 15px; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
+
+    /* Персонаж */
+    .character-container {
+      position: relative;
+      z-index: 3;
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+    }
+    .character-img {
+      max-height: 380px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 0 25px rgba(255, 59, 48, 0.4));
+      transition: transform 0.3s ease;
+    }
+    .character-img:hover { transform: scale(1.03); }
+
+    /* Разделы */
+    .section { max-width: 1000px; margin: 0 auto; padding: 60px 20px; border-top: 1px solid #1a1a1a; position: relative; z-index: 5; background-color: #0a0a0a; }
+    .section-title { text-align: center; font-size: 1.6rem; font-weight: 900; text-transform: uppercase; margin-bottom: 30px; }
+    .section-title span { color: #ff3b30; }
+
+    /* Инструкция "Как начать" */
+    .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-bottom: 35px; }
+    .step-card { background: #141414; border: 1px solid #222; border-radius: 14px; padding: 20px; text-align: center; }
+    .step-number { font-size: 2rem; font-weight: 900; color: #ff3b30; margin-bottom: 5px; }
+
+    /* Блок скачивания под тутором */
+    .download-wrapper {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .download-btn {
+      background: #ff3b30; color: white; padding: 18px 40px;
+      border-radius: 14px; font-weight: 900; text-decoration: none;
+      font-size: 1.2rem; box-shadow: 0 8px 30px rgba(255, 59, 48, 0.5);
+      transition: 0.2s; display: inline-flex; align-items: center; gap: 10px;
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .download-btn:hover { transform: translateY(-3px); background: #e03126; box-shadow: 0 12px 35px rgba(255, 59, 48, 0.7); }
+
+    /* Галерея Скриншотов */
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
+    .screenshot-card { background: #141414; border: 1px solid #222; border-radius: 16px; overflow: hidden; aspect-ratio: 16 / 9; transition: 0.3s; }
+    .screenshot-card:hover { border-color: #ff3b30; }
+    .screenshot-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    footer { padding: 30px; text-align: center; color: #555; font-size: 0.8rem; border-top: 1px solid #111; position: relative; z-index: 5; background-color: #0a0a0a; }
+
+    @media (max-width: 600px) {
+      header { flex-direction: column; gap: 10px; padding: 10px; }
+      .hero { padding-top: 140px; }
+      h1 { font-size: 2rem; }
+      .nav-buttons { width: 100%; justify-content: center; }
+      .nav-btn, .dropdown-btn { font-size: 0.75rem; padding: 6px 10px; }
+      .character-img { max-height: 260px; }
+      .download-btn { font-size: 1rem; padding: 14px 24px; width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Шапка -->
+  <header>
+    <a href="index.html" class="logo-container">
+      <img src="https://via.placeholder.com/100x100/ff3b30/ffffff?text=RP" alt="Логотип" class="site-logo">
+      <div class="logo-text"><span>CRIMINAL</span> RP</div>
+    </a>
+
+    <div class="nav-buttons">
+      <a href="#how-to-play" class="nav-btn">Как начать</a>
+      <a href="https://твой-сайт.ru/donate" target="_blank" class="nav-btn">Донат</a>
+      <a href="https://твой-форум.ru" target="_blank" class="nav-btn">Форум</a>
+      
+      <div class="dropdown">
+        <button class="dropdown-btn" onclick="toggleMenu(event)">🌐 Соц. Сети ▾</button>
+        <div class="dropdown-menu" id="socialMenu">
+          <a href="https://t.me/твой_канал" target="_blank">Telegram</a>
+          <a href="https://vk.com/твоя_группа" target="_blank">VKontakte</a>
+          <a href="https://tiktok.com/@твой_аккаунт" target="_blank">Tik Tok</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Главный экран -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    
+    <div class="hero-content">
+      <div class="badge">ANDROID CRMP MOBILE</div>
+      <h1>Скачай <span>Criminal RP</span></h1>
+      <p>Погрузись в настоящий криминальный мир на своём телефоне! Ознакомься с инструкцией ниже и начинай играть.</p>
+    </div>
+
+    <!-- Персонаж -->
+    <div class="character-container">
+      <img src="https://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c200.png" alt="Персонаж Игра" class="character-img">
+    </div>
+  </section>
+
+  <!-- Блок "Как начать играть" + Кнопка скачать -->
+  <section class="section" id="how-to-play">
+    <div class="section-title">Как начать <span>играть</span></div>
+    
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-number">01</div>
+        <h3>Скачай APK</h3>
+        <p>Нажми большую кнопку ниже и загрузи установочный файл на телефон.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">02</div>
+        <h3>Установи игру</h3>
+        <p>Открой лаунчер и дождись автоматической загрузки игровых файлов.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">03</div>
+        <h3>Создай ник</h3>
+        <p>Придумай никнейм в формате Имя_Фамилия и заходи на сервер!</p>
+      </div>
+    </div>
+
+    <!-- КНОПКА СКАЧАТЬ ЛАУНЧЕР НИЖЕ ТУТОРИАЛА -->
+    <div class="download-wrapper">
+      <a href="https://твой-сайт.ru/launcher.apk" class="download-btn">📱 Скачать Лаунчер (APK)</a>
+    </div>
+  </section>
+
+  <!-- Галерея скриншотов -->
+  <section class="section">
+    <div class="section-title">Скриншоты <span>из игры</span></div>
+    <div class="gallery-grid">
+      <div class="screenshot-card"><img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=800" alt="Скриншот 1"></div>
+      <div class="screenshot-card"><img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800" alt="Скриншот 2"></div>
+      <div class="screenshot-card"><img src="https://images.unsplash.com/photo-1520031441872-265e4ff70366?w=800" alt="Скриншот 3"></div>
+    </div>
+  </section>
+
+  <footer>
+    © Criminal RP 2026. Все права защищены.
+  </footer>
+
+  <script>
+    function toggleMenu(event) {
+      event.stopPropagation();
+      document.getElementById('socialMenu').classList.toggle('active');
+    }
+    window.onclick = function() {
+      var menu = document.getElementById('socialMenu');
+      if (menu.classList.contains('active')) {
+        menu.classList.remove('active');
+      }
+    };
+  </script>
+
+</body>
+</html>
